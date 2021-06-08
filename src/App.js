@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { ethers } from 'ethers'
+import GithubCorner from 'react-github-corner';
 import {
   Container,
   Card,
@@ -58,47 +59,50 @@ export default (props) => {
   }, [provider, address, slot])
 
   return (
-    <Container>
-      <Card className='m-3'>
-        <Card.Header as='h5'>Parameters</Card.Header>
-        <Card.Body>
-          <Form>
-            <Form.Group className='mb-3'>
-              <Form.Control as='select' onChange={event => setChain(event.target.value)}>
-                { CHAINS.map((chain, i) => <option key={i} value={chain}>{chain}</option>) }
-              </Form.Control>
-            </Form.Group>
-            <InputGroup className='mb-3'>
-              <FormControl placeholder='Address' value={address} onChange={event => setAddress(event.target.value)}/>
-            </InputGroup>
-            <InputGroup className='mb-3'>
-              <FormControl placeholder='Slot' value={slot} onChange={event => setSlot(event.target.value)}/>
-              <DropdownButton title='Common slots' variant='outline-secondary' align='end'>
-                { SLOTS.map(({ slot, name }, i) => <Dropdown.Item key={i} onClick={() => setSlot(slot)}>{name}</Dropdown.Item>) }
-              </DropdownButton>
-            </InputGroup>
-          </Form>
-        </Card.Body>
-      </Card>
-      {
-        value &&
-        <Card className='m-3' bg='dark' text='light'>
-          <Card.Header as='h5'>Value</Card.Header>
+    <>
+      <Container>
+        <Card className='m-3'>
+          <Card.Header as='h5'>Parameters</Card.Header>
           <Card.Body>
-            <Table striped bordered hover variant='dark'>
-              <thead>
-                <tr>
-                  <th>Format</th>
-                  <th>Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                { FORMAT.map(({ name, conversion }, i) => <tr key={i}><td>{name}</td><td>{conversion(value)}</td></tr>) }
-              </tbody>
-            </Table>
+            <Form>
+              <Form.Group className='mb-3'>
+                <Form.Control as='select' onChange={event => setChain(event.target.value)}>
+                  { CHAINS.map((chain, i) => <option key={i} value={chain}>{chain}</option>) }
+                </Form.Control>
+              </Form.Group>
+              <InputGroup className='mb-3'>
+                <FormControl placeholder='Address' value={address} onChange={event => setAddress(event.target.value)}/>
+              </InputGroup>
+              <InputGroup className='mb-3'>
+                <FormControl placeholder='Slot' value={slot} onChange={event => setSlot(event.target.value)}/>
+                <DropdownButton title='Common slots' variant='outline-secondary' align='end'>
+                  { SLOTS.map(({ slot, name }, i) => <Dropdown.Item key={i} onClick={() => setSlot(slot)}>{name}</Dropdown.Item>) }
+                </DropdownButton>
+              </InputGroup>
+            </Form>
           </Card.Body>
         </Card>
-      }
-    </Container>
+        {
+          value &&
+          <Card className='m-3' bg='dark' text='light'>
+            <Card.Header as='h5'>Value</Card.Header>
+            <Card.Body>
+              <Table striped bordered hover variant='dark'>
+                <thead>
+                  <tr>
+                    <th>Format</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  { FORMAT.map(({ name, conversion }, i) => <tr key={i}><td>{name}</td><td>{conversion(value)}</td></tr>) }
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        }
+      </Container>
+      <GithubCorner href="https://github.com/amxx/ssg" />
+    </>
   )
 }
