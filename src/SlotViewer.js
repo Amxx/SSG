@@ -23,7 +23,7 @@ const SlotViewer = (props) => {
   return (
     <>
       <InputGroup className={props.className}>
-        <FormControl placeholder="Slot" value={text} readOnly/>
+        <FormControl placeholder="Value" value={text} readOnly/>
         <FormControl as="select" onChange={event => setFormat(event.target.value)} style={{'flex': 0.15}}>
           { FORMAT.map(({ name }, i) => <option key={i} value={i}>{name}</option>) }
         </FormControl>

@@ -17,29 +17,22 @@ const SLOTS = [
 
 const SlotForm = (props) => {
   const [ slot,  setSlot  ] = React.useState('')
-  const [ value, setValue ] = React.useState(null)
+  const [ value, setValue ] = React.useState('')
 
   React.useEffect(() => {
-    props.provider.getStorageAt(props.address, slot).then(setValue).catch(() => setValue(null))
+    props.provider.getStorageAt(props.address, slot).then(setValue).catch(() => setValue(''))
   }, [ props.provider, props.address, slot ])
 
   return (
     <>
       <hr/>
-      Read slot:
-      <InputGroup className={props.className}>
+      <InputGroup className='my-3'>
         <FormControl placeholder="Slot" value={slot} onChange={event => setSlot(event.target.value)} />
         <DropdownButton title='Common slots' variant='outline-secondary' align='end'>
           { SLOTS.map(({ slot, name }, i) => <Dropdown.Item key={i} onClick={() => setSlot(slot)}>{name}</Dropdown.Item>) }
         </DropdownButton>
       </InputGroup>
-      {
-        value &&
-        <>
-          Value:
-          <SlotViewer value={value}/>
-        </>
-      }
+      <SlotViewer value={value}/>
     </>
   )
 }
