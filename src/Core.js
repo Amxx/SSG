@@ -12,6 +12,6 @@ const Core = (props) =>
       <Route exact path='/:chain?/:address?/' render={ (routing) => <App routing={routing} {...props}/> }/>
     </Router>
     <GithubCorner href="https://github.com/amxx/ssg" />
-    </>
+  </>
 
 export default Core

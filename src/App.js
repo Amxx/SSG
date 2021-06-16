@@ -36,7 +36,7 @@ const App = (props) => {
   }, [provider, address])
 
   return (
-    <Container className='m-3'>
+    <Container className='my-5'>
       <Accordion activeKey={tab}>
         {
           true &&
