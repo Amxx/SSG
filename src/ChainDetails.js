@@ -9,8 +9,8 @@ const ChainDetails = (props) => {
   const [ blockNumber, setBlockNumber ] = React.useState()
 
   React.useEffect(() => {
-    props.provider.getNetwork().then(setNetwork).catch(() => setNetwork(null));
-    props.provider.getBlockNumber().then(setBlockNumber).catch(() => setBlockNumber(null));
+    props.provider.getNetwork().then(setNetwork).catch(() => setNetwork(null))
+    props.provider.on("block", setBlockNumber)
   }, [ props.provider ])
 
   return (
